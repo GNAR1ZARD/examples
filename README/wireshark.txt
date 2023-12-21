@@ -1,0 +1,42 @@
+ip.addr == 192.168.0.197        // Filter based on ip
+
+frame.number == 10431           // Filter for specific packet
+
+// Packet Range:
+frame.number >= 10420 && frame.number <= 10440
+
+// This will display packets either from "142.251.2.95" to "192.168.0.197" or from "192.168.0.197" to "142.251.2.95"
+(ip.addr == 142.251.2.95 && ip.addr == 192.168.0.197)
+
+// Focus on Download Traffic:
+(ip.src == 142.251.2.95 && ip.dst == 192.168.0.197)
+
+// Filter Only TLS/SSL Traffic:
+(ip.src == 142.251.2.95 && ip.dst == 192.168.0.197 && tls)
+
+// DNS queries from 192.168.0.197 to any destination:
+dns && ip.src == 192.168.0.197
+
+// DNS Queries Between IPs:
+dns && ((ip.src == 192.168.0.197 && ip.dst == 192.168.1.1) || (ip.src == 192.168.1.1 && ip.dst == 192.168.0.197))
+
+// DNS Queries Related to Google Play:
+(dns && ip.src == 192.168.0.197 && dns.qry.name contains "google")
+
+// Exclude Certain Protocols:
+!(udp) && (ip.src == 142.251.2.95 && ip.dst == 192.168.0.197)
+
+// Filter by Packet Length:
+(ip.len > 1000 && ip.src == 142.251.2.95 && ip.dst == 192.168.0.197)
+
+// Logical AND (&&): 
+(ip.src == 142.251.2.95 && ip.dst == 192.168.0.197 && tls)
+
+// Logical OR (||):
+(ip.src == 192.168.0.197 && dns) || (ip.src == 192.168.0.197 && tls)
+
+// Combined filters:
+(ip.src == 142.251.2.95 && ip.dst == 192.168.0.197 && tls) || (dns && ip.src == 192.168.0.197 && dns.qry.name contains "google")
+
+// This filter will show both SYN-only and SYN-ACK packets within a range
+tcp.flags.syn == 1 && frame.number >= 10318 && frame.number <= 10330

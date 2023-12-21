@@ -1,0 +1,83 @@
+git config --global user.email "YOUR_EMAIL"
+
+git config --global user.name "Your_Name"
+
+git remote -v // Check remotes in local repo (.git)
+
+git commands:
+git init //local repo
+
+git add . // saves all
+or
+git add filename.ext // for single file
+or 
+git add file1.ext file2.ext file3.ext // mult files
+or
+git add foldername/* // For all files in a specific directory
+or 
+git add foldername/filename.ext // For a specific file in a dir 
+or
+git add foldername/filename1.ext foldername/filename2.ext // Stage both files to commit 
+
+git reset // To unstage
+
+git status // Check to see if files are staged 
+
+git commit -m "update message inserted here "
+
+git log //outputs a log to dashboard
+-exit git log: q
+
+git checkout "hashcode" //loads that previous state
+
+git checkout master //goes back to master branch
+
+git remote -v // Check origin 
+
+git remote add origin "github repo url " //git@github.com:GNAR1ZARD/test.git
+
+// After creating new branch, sets origin to remote
+git push --set-upstream origin [branchName] 
+
+git push -u origin master // --force flag iff pushing submod 
+or
+git push  // if already initalized upstream tracking ref (-u)
+or 
+git push -u origin new_branch / if pushing a new branch 
+
+git clone "repo directory to clone" //you copy the repository from GitHub.com to your local machine.
+//iff submod, have to clone into fresh directory after adding origin (path)
+
+branches:
+git branch // list all local branches 
+git checkout -b "new branch name"//create a branch
+git branch --delete "branchname"//delete a branch
+
+merge in git: (scary not recommended - use github for pulls/merges)
+git checkout [master/main/root branch]
+git merge [branch name]
+
+Fetch the latest changes from the remote (without merging them):
+git fetch origin
+
+// Fetches the changes made remotely and merges them:
+git pull origin master
+
+
+//Add the User as a Collaborator with Write Access:
+Navigate to your private repository on GitHub.
+Click on the "Settings" tab.
+In the left sidebar, click "Manage access".
+Click the "Invite teams or people" button.
+Add the user's GitHub username and grant them "Write" access.
+They will now be able to clone, fetch, and push to the repository, as well as open pull requests.
+Set Up Branch Protection Rules:
+
+Still in the "Settings" tab of your repository, click on "Branches" in the left sidebar.
+Click "Add rule" to create a new branch protection rule.
+Enter the branch name pattern (e.g., main or master).
+Under "Protect matching branches", check "Require pull request reviews before merging".
+This means that before code can be merged into the protected branch, it must be reviewed.
+You can also specify the number of required approving reviews.
+Ensure that "Include administrators" is checked. This ensures that even repository owners and administrators are subject to the branch protection rules.
+Click "Create" or "Save changes".
