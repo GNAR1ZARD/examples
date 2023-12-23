@@ -44,6 +44,9 @@ or
 git push  // if already initalized upstream tracking ref (-u)
 or 
 git push -u origin new_branch / if pushing a new branch 
+or
+git push --force //This command disregards the remote branch's current state and 
+                    forcefully updates it with whatever you have in your local branch
 
 git clone "repo directory to clone" //you copy the repository from GitHub.com to your local machine.
 //iff submod, have to clone into fresh directory after adding origin (path)
